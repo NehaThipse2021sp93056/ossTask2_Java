@@ -17,6 +17,7 @@ public class LoginServlet extends HttpServlet{
 		String codes = req.getSession().getAttribute("codes").toString();
 		String mycode = req.getParameter("checkcode");
 		resp.setCharacterEncoding("utf-8");
+//comment
 		
 		PrintWriter out = resp.getWriter();
 		if(mycode.toUpperCase().equals(codes)){
