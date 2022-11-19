@@ -21,35 +21,36 @@ public class ImageCodeServlet extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		resp.setCharacterEncoding("utf-8");
 		/**
-		 * 生成带字符串的文本图片
+		 * ç”Ÿæˆ�å¸¦å­—ç¬¦ä¸²çš„æ–‡æœ¬å›¾ç‰‡
 		 */
-//		1.创建图片缓存区     传参为宽高和图片类型
+//		1.åˆ›å»ºå›¾ç‰‡ç¼“å­˜åŒº     ä¼ å�‚ä¸ºå®½é«˜å’Œå›¾ç‰‡ç±»åž‹
 		BufferedImage image = new BufferedImage(68, 22, BufferedImage.TYPE_INT_RGB);
 		
-//		2.创建绘制环境（拿到画笔）
+//		2.åˆ›å»ºç»˜åˆ¶çŽ¯å¢ƒï¼ˆæ‹¿åˆ°ç”»ç¬”ï¼‰
 		Graphics paint = image.getGraphics();
 		Color c = new Color(200,150,255);
-//		设置画笔
+//		è®¾ç½®ç”»ç¬”
 		paint.setColor(c);
-//		画背景
+//		ç”»èƒŒæ™¯
 		paint.fillRect(0, 0, 68, 22);
 		
 		StringBuffer codes = new StringBuffer();
-//		设置文本
+//		è®¾ç½®æ–‡æœ¬
 		char[] ch = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890".toCharArray();
-		Random r = new Random(); //随机数
+		Random r = new Random(); //éš�æœºæ•°
 		int index;
 		for(int i=0;i<4;i++){
-			index = r.nextInt(ch.length);//随机数位置
-			paint.setColor(new Color(r.nextInt(88),r.nextInt(150),r.nextInt(255))); //设置文本颜色
-//			使用此图形上下文的当前字体和颜色绘制由指定 string 给定的文本。
+			index = r.nextInt(ch.length);//éš�æœºæ•°ä½�ç½®
+			paint.setColor(new Color(r.nextInt(88),r.nextInt(150),r.nextInt(255))); //è®¾ç½®æ–‡æœ¬é¢œè‰²
+//			ä½¿ç”¨æ­¤å›¾å½¢ä¸Šä¸‹æ–‡çš„å½“å‰�å­—ä½“å’Œé¢œè‰²ç»˜åˆ¶ç”±æŒ‡å®š string ç»™å®šçš„æ–‡æœ¬ã€‚
 			paint.drawString(ch[index]+"", (i*16)+3, 18);
 			codes.append(ch[index]);
 		}
 		req.getSession().setAttribute("codes", codes);
 		
 		
-//		3.输出图片
+//		3.è¾“å‡ºå›¾ç‰‡
+// adding new comment here!
 		ImageIO.write(image, "JPG", resp.getOutputStream()); 
 	}
 }
